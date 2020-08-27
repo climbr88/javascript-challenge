@@ -11,19 +11,12 @@ form.on("submit", runEnter);
 
 function runEnter() {
     d3.event.preventDefault();
-  
+    // $('#ufo-table> >tbody > tr').remove();
+    
     var input = $('#datetime').value;
     var filteredData = ufoData.filter(date => date.datetime === input);   
     console.log(filteredData) 
     
-    var date = filteredData.map(date => date.datetime);
-    var city = filteredData.map(date => date.city);
-    var state = filteredData.map(date => date.state);
-    var country = filteredData.map(date => date.country);
-    var shape = filteredData.map(date => date.shape);
-    var duration = filteredData.map(date => date.durationMinutes);
-    var comments = filteredData.map(date => date.comments);
-
     
     
 

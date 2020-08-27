@@ -11,31 +11,37 @@ form.on("submit", runEnter);
 
 function runEnter() {
     d3.event.preventDefault();
+    // $('#ufo-table tbody').empty();
   
     var input = $('#datetime').value;
     var filteredData = ufoData.filter(date => date.datetime === input);   
     console.log(filteredData) 
+    if (filteredData.length == 0) {
+      showAlert(alert) 
+        alert("Data not found for selected date");
+      }
+    }  else {
     
-    var date = filteredData.map(date => date.datetime);
-    var city = filteredData.map(date => date.city);
-    var state = filteredData.map(date => date.state);
-    var country = filteredData.map(date => date.country);
-    var shape = filteredData.map(date => date.shape);
-    var duration = filteredData.map(date => date.durationMinutes);
-    var comments = filteredData.map(date => date.comments);
+        var date = filteredData.map(date => date.datetime);
+        var city = filteredData.map(date => date.city);
+        var state = filteredData.map(date => date.state);
+        var country = filteredData.map(date => date.country);
+        var shape = filteredData.map(date => date.shape);
+        var duration = filteredData.map(date => date.durationMinutes);
+        var comments = filteredData.map(date => date.comments);   
+    
 
-    
-    
+        filteredData.forEach((filteredData) => {
+      
+          var row = tbody.append("tr");
+          Object.entries(filteredData).forEach(([key, value]) => {
+          var cell = row.append("td");
+          cell.text(value);
+        });
+        }
+  
+       
 
-    filteredData.forEach((filteredData) => {
-      var row = tbody.append("tr");
-      Object.entries(filteredData).forEach(([key, value]) => {
-        var cell = row.append("td");
-        cell.text(value);
-      });
-    });
-    
-}
 
     
    
