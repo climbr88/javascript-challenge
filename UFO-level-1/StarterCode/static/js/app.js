@@ -4,22 +4,23 @@ var tbody = d3.select("tbody");
 $ = document.querySelector.bind(document)
 $$ = document.querySelectorAll.bind(document)
 // YOUR CODE HERE!
-var button = d3.select('#filter-btn');  
-var form = d3.select('#form')
-button.on("click", runEnter);
+var dropdown = d3.select('#select');  
+
+var form = d3.select('#form');
+// define action on user choosing date
+dropdown.on("change", runEnter);
 form.on("submit", runEnter);
 
 function runEnter() {
     d3.event.preventDefault();
-    
+    var input = dropdown.node().value
     // clear output
     $('tbody').innerHTML = "";
-    
-    var input = $('#datetime').value;
+     
     var filteredData = ufoData.filter(date => date.datetime === input);   
-    console.log(filteredData) 
+    console.log(filteredData);
     
-    
+
     
 
     filteredData.forEach((filteredData) => {
@@ -27,8 +28,8 @@ function runEnter() {
       Object.entries(filteredData).forEach(([key, value]) => {
         var cell = row.append("td");
         cell.text(value);
-        //clear input field
-        $('#datetime').value = "" 
+        
+        
       });
     });
     
