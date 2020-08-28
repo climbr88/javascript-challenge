@@ -11,7 +11,9 @@ form.on("submit", runEnter);
 
 function runEnter() {
     d3.event.preventDefault();
-    // $('#ufo-table> >tbody > tr').remove();
+    
+    // clear output
+    $('tbody').innerHTML = "";
     
     var input = $('#datetime').value;
     var filteredData = ufoData.filter(date => date.datetime === input);   
@@ -25,6 +27,8 @@ function runEnter() {
       Object.entries(filteredData).forEach(([key, value]) => {
         var cell = row.append("td");
         cell.text(value);
+        //clear input field
+        $('#datetime').value = "" 
       });
     });
     

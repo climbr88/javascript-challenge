@@ -12,7 +12,8 @@ form.on("submit", runEnter);
 function runEnter() {
     d3.event.preventDefault();
     // $('#ufo-table tbody').empty();
-  
+    $('tbody').innerHTML = "";
+    
     var input = $('#datetime').value;
     var filteredData = ufoData.filter(date => date.datetime === input);   
     console.log(filteredData) 
@@ -20,7 +21,7 @@ function runEnter() {
       showAlert(alert) 
         alert("Data not found for selected date");
       }
-    }  else {
+      else {
     
         var date = filteredData.map(date => date.datetime);
         var city = filteredData.map(date => date.city);
@@ -37,11 +38,10 @@ function runEnter() {
           Object.entries(filteredData).forEach(([key, value]) => {
           var cell = row.append("td");
           cell.text(value);
-        });
-        }
+          $('#datetime').value = ""
   
-       
+        });
+        });
+      };
 
-
-    
-   
+    };      
